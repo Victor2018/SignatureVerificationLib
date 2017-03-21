@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+// JitPack Maven
+apply plugin: 'com.github.dcendents.android-maven'
+// Group
+group='com.github.Victor2018'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    signingConfigs {
+        release {
+            storeFile file("E:\\androidProjects\\SignatureVerificationLib\\docs\\victor_keystore.jks")
+            storePassword "android"
+            keyAlias "victor"
+            keyPassword "android"
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            moduleName "SignVerification"
+            ldLibs "m", "log", "jnigraphics"
+//            abiFilters "armeabi", "armeabi-v7a", "x86"
+        }
+    }
+
+    sourceSets {
+        main {
+//            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+}
