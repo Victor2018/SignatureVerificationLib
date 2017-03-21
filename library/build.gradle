@@ -8,14 +8,14 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
-//    signingConfigs {
-//        release {
-//            storeFile file("E:\\androidProjects\\SignatureVerificationLib\\docs\\victor_keystore.jks")
-//            storePassword "android"
-//            keyAlias "victor"
-//            keyPassword "android"
-//        }
-//    }
+    signingConfigs {
+        release {
+            storeFile file("E:\\androidProjects\\SignatureVerificationLib\\docs\\victor_keystore.jks")
+            storePassword "android"
+            keyAlias "victor"
+            keyPassword "android"
+        }
+    }
 
     defaultConfig {
         minSdkVersion 17
@@ -41,12 +41,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
 
-//        debug {
-//            signingConfig signingConfigs.release
-//        }
+        debug {
+            signingConfig signingConfigs.release
+        }
     }
 }
 
